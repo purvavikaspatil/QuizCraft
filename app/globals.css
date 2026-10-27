@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/* Dark mode is driven by data-theme on <html> (set before paint by an inline script). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --canvas: #f5f6fb;
+  --surface: #ffffff;
+  --surface-muted: #f0f1f8;
+  --border: #e2e4ef;
+  --border-strong: #c9cce0;
+  --fg: #141a2e;
+  --muted: #5b6278;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-fg: #ffffff;
+  --accent-text: #4338ca;
+  --accent-soft: #eef0ff;
+  --accent-soft-strong: #dfe2ff;
+  --success: #15803d;
+  --success-soft: #e8f7ee;
+  --success-border: #a7e3bd;
+  --warning: #a35208;
+  --warning-soft: #fdf3e1;
+  --warning-border: #f3cf8f;
+  --danger: #c2261d;
+  --danger-soft: #fdeceb;
+  --danger-border: #f5b5b0;
+  --ring: #6366f1;
+  --shadow-color: 228 30% 25%;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #0c0f1d;
+  --surface: #141829;
+  --surface-muted: #1b2034;
+  --border: #282e48;
+  --border-strong: #3a4263;
+  --fg: #e7e9f6;
+  --muted: #a1a7c2;
+  --accent: #5b55ea;
+  --accent-hover: #6c67f0;
+  --accent-fg: #ffffff;
+  --accent-text: #a9abff;
+  --accent-soft: #1f2148;
+  --accent-soft-strong: #2b2e63;
+  --success: #4ade80;
+  --success-soft: #11291d;
+  --success-border: #1f5a37;
+  --warning: #fbbf24;
+  --warning-soft: #2b2110;
+  --warning-border: #6b4e12;
+  --danger: #f87171;
+  --danger-soft: #2f1416;
+  --danger-border: #6f2a2c;
+  --ring: #8b8cf8;
+  --shadow-color: 230 50% 2%;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-strong: var(--accent-soft-strong);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-border: var(--success-border);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-border: var(--warning-border);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-border: var(--danger-border);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --shadow-card: 0 1px 2px hsl(var(--shadow-color) / 0.06), 0 4px 16px -6px hsl(var(--shadow-color) / 0.1);
+  --shadow-raised: 0 2px 4px hsl(var(--shadow-color) / 0.08), 0 16px 40px -12px hsl(var(--shadow-color) / 0.25);
+  --animate-fade-in: fade-in 220ms ease-out;
+  --animate-slide-up: slide-up 220ms ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  background: var(--canvas);
+}
+
+body {
+  background: var(--canvas);
+  color: var(--fg);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+dialog::backdrop {
+  background: rgb(10 12 28 / 0.55);
+  backdrop-filter: blur(2px);
+}
+
+dialog[open] {
+  animation: slide-up 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
